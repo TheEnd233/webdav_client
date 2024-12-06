@@ -89,7 +89,9 @@ class WdDio with DioMixin implements Dio {
     );
 
     if (resp.statusCode == 401) {
-      String? w3AHeader = resp.headers.value('www-authenticate');
+      Map<String, List<String>> o = resp.headers.map;
+      List<String>? p = o['www-authenticate'];
+      String? w3AHeader = p?.first;
       String? lowerW3AHeader = w3AHeader?.toLowerCase();
 
       // before is noAuth
